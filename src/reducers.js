@@ -1,3 +1,4 @@
+import { handleActions } from 'redux-actions';
 
 const initialTweets = {};
 
@@ -6,26 +7,21 @@ const now = Date.now();
 const currentHour = now - now % ONE_HOUR;
 initialTweets[currentHour] = 0;
 for(let i=0; i<(11*24); i++){
-  initialTweets[currentHour - (i* ONE_HOUR)] = Math.round(Math.random() * 20);
-  //initialTweets[currentHour - (i* ONE_HOUR)] = 0;
+  initialTweets[currentHour - (i* ONE_HOUR)] = 0;
 }
 
-
-export function tweets(state = initialTweets, action){
-  const {type} = action;
-  switch(type){
-    //case RECEIVE_NEW_TWEET:
-      //extract timestamp from tweet
-      //find index by hours
-      //aggregate in state according to the timestamp
-    default:
-      return state;
+export const tweets = handleActions({
+  INIT_TWEETS: (state, action) => {
+    return action.payload;
   }
-}
+}, initialTweets);
 
-export function retweets(){
-  return {};
-}
+
+export const retweets = handleActions({
+  INIT_RETWEETS: (state, action) => {
+    return action.payload;
+  }
+}, initialTweets);
 
 export function topTweets(){
   return {};

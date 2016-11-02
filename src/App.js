@@ -5,7 +5,12 @@ import './App.css';
 class App extends Component {
   render() {
     const {tweets} = this.props;
-    return <Line data={tweets} width="1200" height="250"/>;
+    const options = {
+      pointHitRadius: 2,
+      pointRadius: 1,
+      backgroundColor: 'rgba(75,192,192,0.2)'
+    };
+    return <Line data={tweets} options={options} width="1200" height="450"/>;
   }
 }
 
